@@ -1,0 +1,3 @@
+FROM leomuller/stups-awscli-docker
+COPY pierone_pull.py /
+ENTRYPOINT ["/pierone_pull.py"]
