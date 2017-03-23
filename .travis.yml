@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+- docker build -f Dockerfile -t leomuller/stups-awscli-docker .
+
+after_success:
+ - docker login -u=leomuller -p="$DOCKER_PASSWORD"
+ - docker push leomuller/stups-awscli-docker
