@@ -4,8 +4,11 @@ services:
   - docker
 
 script:
-- docker build -f Dockerfile -t leomuller/stups-awscli-docker .
+- docker pull leomuller/stups-awscli-docker
+- docker build -t leomuller/stups-awscli-docker .
+- docker build -t leomuller/pierone-pull -f Dockerfile.pierone_pull .
 
 after_success:
  - docker login -u=leomuller -p="$DOCKER_PASSWORD"
  - docker push leomuller/stups-awscli-docker
+ - docker push leomuller/pierone-pull
