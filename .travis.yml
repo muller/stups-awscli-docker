@@ -7,8 +7,10 @@ script:
 - docker pull leomuller/stups-awscli-docker
 - docker build -t leomuller/stups-awscli-docker .
 - docker build -t leomuller/pierone-pull -f Dockerfile.pierone_pull .
+- docker build -t leomuller/scalyr-journald -f Dockerfile.scalyr_journald .
 
 after_success:
  - docker login -u=leomuller -p="$DOCKER_PASSWORD"
  - docker push leomuller/stups-awscli-docker
  - docker push leomuller/pierone-pull
+ - docker push leomuller/scalyr-journald
