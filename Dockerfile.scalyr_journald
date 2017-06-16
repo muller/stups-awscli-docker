@@ -1,0 +1,14 @@
+FROM scalyr/scalyr-docker-agent
+
+RUN apt-get install -y python-systemd
+
+ADD https://github.com/scalyr/scalyr-agent-2/files/635109/journald_monitor.py.txt /usr/share/scalyr-agent-2/py/scalyr_agent/builtin_monitors/journald_monitor.py
+
+RUN echo '\
+{\
+  monitors: [\
+    {\
+      module: "scalyr_agent.builtin_monitors.journald_monitor"\
+    }\
+  ]\
+}' > /etc/scalyr-agent-2/agent.d/journald.json
